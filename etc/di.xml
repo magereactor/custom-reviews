@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageReactor\CustomReviews\Api\Data\CustomReviewsInterface" type="MageReactor\CustomReviews\Model\CustomReview"/>
+    <preference for="MageReactor\CustomReviews\Api\CustomReviewsManagementInterface" type="MageReactor\CustomReviews\Model\CustomReviewsManagement"/>
+    <preference for="MageReactor\CustomReviews\Api\ReviewDetailInterface" type="MageReactor\CustomReviews\Model\ReviewDetail"/>
+    <preference for="MageReactor\CustomReviews\Api\ValidatorInterface" type="MageReactor\CustomReviews\Model\Validator"/>
+
+    <type name="MageReactor\CustomReviews\Model\Validator">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="productValidator" xsi:type="object">MageReactor\CustomReviews\Model\Validators\ProductValidator</item>
+                <item name="InvalidArgumentsValidator" xsi:type="object">MageReactor\CustomReviews\Model\Validators\InvalidArgumentsValidator</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

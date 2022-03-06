@@ -1,0 +1,40 @@
+{
+    "name": "magereactor/custom-reviews",
+    "description": "MageReactor Custom Reviews",
+    "keywords":[
+        "reviews",
+        "m2 reviews",
+        "custom reviews",
+        "magento 2 reviews",
+        "m2 custom reviews"
+    ],
+    "minimum-stability": "stable",
+    "require":{
+       "php": "~7.3.0||~7.4.0",
+       "magereactor/base": "2.0.0"
+    },
+    "type":"magento2-module",
+    "version":"1.0.0",
+    "license":"MIT",
+    "authors":[
+       {
+          "name":"Faizan Pervaiz",
+          "email":"faixanpervaix@gmail.com",
+          "role":"Magento 2 Developer"
+       }
+    ],
+    "autoload":{
+       "files":[
+          "registration.php"
+       ],
+       "psr-4":{
+          "MageReactor\\CustomReviews\\":""
+       }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://github.com/magereactor/custom-reviews"
+        }
+    ]
+ }

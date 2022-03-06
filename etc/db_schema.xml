@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mr_reviews" resource="default" engine="innodb" comment="MageReactor Reviews Table">
+        <column xsi:type="int" name="mr_review_id" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" default="0" nullable="false" identity="false"
+                comment="Product Id"/>
+        <column xsi:type="int" name="parent_id" unsigned="true" default="0" nullable="false" identity="false"
+                comment="Product Id"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="64" comment="SKU"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Date"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated Date"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="mr_review_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MR_REVIEWS_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="mr_reviews" column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MR_REVIEWS_PARENT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="mr_reviews" column="parent_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="MR_REVIEWS_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+        <index referenceId="MR_REVIEWS_PARENT_ID" indexType="btree">
+            <column name="parent_id"/>
+        </index>
+        <index referenceId="MR_REVIEWS_SKU" indexType="btree">
+            <column name="sku"/>
+        </index>
+    </table>
+    <table name="mr_review_detail" resource="default" engine="innodb" comment="Review detail information">
+        <column xsi:type="bigint" name="mr_review_detail_id" unsigned="true" nullable="false" identity="true"
+                comment="Review detail ID"/>
+        <column xsi:type="int" name="mr_review_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Review ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="true" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="text" name="detail" nullable="false" comment="Detail description"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="128" comment="name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="mr_review_detail_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MR_REVIEW_DETAIL_MR_REVIEW_ID_MR_REVIEW_MR_REVIEW_ID" table="mr_review_detail"
+                    column="mr_review_id" referenceTable="mr_reviews" referenceColumn="mr_review_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MR_REVIEW_DETAIL_STORE_ID_STORE_STORE_ID" table="mr_review_detail"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="SET NULL"/>
+        <index referenceId="REVIEW_DETAIL_REVIEW_ID" indexType="btree">
+            <column name="mr_review_id"/>
+        </index>
+        <index referenceId="REVIEW_DETAIL_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="mr_reviews_store" resource="default" engine="innodb" comment="Mr Reviews Store">
+        <column xsi:type="int" name="mr_review_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Review Id"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="mr_review_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MR_REVIEWS_STORE_STORE_ID_STORE_STORE_ID" table="mr_reviews_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MR_REVIEWS_STORE_REVIEW_ID_MR_REVIEWS_MR_REVIEW_ID" table="mr_reviews_store"
+                    column="mr_review_id" referenceTable="mr_reviews" referenceColumn="mr_review_id" onDelete="CASCADE"/>
+        <index referenceId="MR_REVIEWS_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

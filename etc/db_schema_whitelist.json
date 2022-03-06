@@ -1,0 +1,56 @@
+{
+    "mr_reviews": {
+        "column": {
+            "mr_review_id": true,
+            "product_id": true,
+            "parent_id": true,
+            "sku": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MR_REVIEWS_PRODUCT_ID": true,
+            "MR_REVIEWS_PARENT_ID": true,
+            "MR_REVIEWS_SKU": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MR_REVIEWS_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true,
+            "MR_REVIEWS_PARENT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "mr_review_detail": {
+        "column": {
+            "mr_review_detail_id": true,
+            "mr_review_id": true,
+            "store_id": true,
+            "title": true,
+            "detail": true,
+            "name": true
+        },
+        "index": {
+            "MR_REVIEW_DETAIL_MR_REVIEW_ID": true,
+            "MR_REVIEW_DETAIL_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MR_REVIEW_DETAIL_MR_REVIEW_ID_MR_REVIEWS_MR_REVIEW_ID": true,
+            "MR_REVIEW_DETAIL_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "mr_reviews_store": {
+        "column": {
+            "mr_review_id": true,
+            "store_id": true
+        },
+        "index": {
+            "MR_REVIEWS_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MR_REVIEWS_STORE_STORE_ID_STORE_STORE_ID": true,
+            "MR_REVIEWS_STORE_MR_REVIEW_ID_MR_REVIEWS_MR_REVIEW_ID": true
+        }
+    }
+}
