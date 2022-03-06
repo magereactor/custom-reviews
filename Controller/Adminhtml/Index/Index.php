@@ -8,11 +8,14 @@ use Magento\Framework\View\Result\PageFactory;
 class Index extends Action
 {
     /**
-     * Authorization level of a basic admin session
+     * Determines whether current user is allowed to access Action
      *
-     * @see _isAllowed()
+     * @return bool
      */
-    const ADMIN_RESOURCE = 'Magento_Cms::page';
+    protected function _isAllowed()
+    {
+        return true;
+    }
 
     /**
      * @var PageFactory
@@ -36,7 +39,7 @@ class Index extends Action
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Magento_Cms::cms_page');
+        $resultPage->setActiveMenu('MageReactor_CustomReviews::custom_reviews');
         $resultPage->addBreadcrumb(__('Custom Reviews'), __('Custom Reviews'));
         $resultPage->addBreadcrumb(__('Manage Reviews'), __('Manage Reviews'));
         $resultPage->getConfig()->getTitle()->prepend(__('MR Custom Reviews'));
