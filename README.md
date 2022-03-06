@@ -1,7 +1,7 @@
-##Overview
-MageReactor CustomReviews Module
+#Overview
+MageReactor CustomReviews Module. Retrieve reviews based on product's SKU.
 
-####Module Allow
+###Module Allow
 
 * Save Review
 * Get Review By Review ID
@@ -11,19 +11,19 @@ MageReactor CustomReviews Module
 | /V2/review     | POST   | Method to save Review               |
 | /V2/review/:id | GET    | Method to retrieve one review by id |
 
-### Compatiblity
+###Compatiblity
 Currently, this module is compatible with Magento 2.4.x
 
 
-## Install
+##Install
 
-### Composer
+####Composer
 
 ```bash
 composer require magereactor/custom-reviews
 ```
 
-### Enable Module
+####Enable Module
 
 The package comes with the MageReactor_Base module. This Base module contains necessary configurations for all MageReactor's extensions
 
@@ -37,8 +37,8 @@ php bin/magento setup:static-content:deploy -f | php bin/magento setup:static-co
 
 You may need to Flush Magento Cache after installation.
 
-###Save Review /V2/review
-####Body
+####Save Review /V2/review
+#####Body
 ```json
 {
     "review": {
@@ -54,9 +54,9 @@ You may need to Flush Magento Cache after installation.
 }
 ```
 
-###Get Review /V2/review/:reviewId
+####Get Review /V2/review/:reviewId
 
-####Response
+#####Response
 ```json
 {
     "id": 27,
