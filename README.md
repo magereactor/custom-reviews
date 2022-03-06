@@ -37,7 +37,9 @@ php bin/magento setup:static-content:deploy -f | php bin/magento setup:static-co
 
 You may need to Flush Magento Cache after installation.
 
-####Save Review /V2/review
+####Save Review
+/V2/review
+
 #####Body
 ```json
 {
@@ -54,7 +56,8 @@ You may need to Flush Magento Cache after installation.
 }
 ```
 
-####Get Review /V2/review/:reviewId
+####Get Review
+/V2/review/:reviewId
 
 #####Response
 ```json
